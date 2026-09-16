@@ -428,8 +428,8 @@ img {
 
 .hero.normal-mode .hero-content {
     display: block;
-    position: absolute;
-    bottom: 61%;
+    position: sticky;
+    top: 35%;
     left: 0;
     right: 0;
     z-index: 2;
@@ -437,15 +437,22 @@ img {
     padding: 0 20px;
 }
 
+.hero.normal-mode .hero-content .hero-subtitle {
+    margin-bottom: 40px;
+}
+
 .hero.normal-mode .hero-scroll {
     display: block;
-    position: absolute;
-    bottom: 58%;
+    position: sticky;
+    top: 75%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
     cursor: pointer;
     animation: bounceDown 2s infinite;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 15px;
 }
 
 .hero.normal-mode .hero-scroll i {
@@ -1453,11 +1460,17 @@ img {
         position: relative;
         bottom: auto;
         top: auto;
-        padding-top: 40%;
+        padding-top: 35%;
+    }
+
+    .hero.normal-mode .hero-content .hero-subtitle {
+        margin-bottom: 30px;
     }
 
     .hero.normal-mode .hero-scroll {
         display: none;
+        position: static;
+        margin: 0;
     }
 
     .nav-menu {
