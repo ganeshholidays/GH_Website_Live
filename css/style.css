@@ -428,8 +428,8 @@ img {
 
 .hero.normal-mode .hero-content {
     display: block;
-    position: sticky;
-    top: 35%;
+    position: absolute;
+    bottom: 61%;
     left: 0;
     right: 0;
     z-index: 2;
@@ -443,16 +443,13 @@ img {
 
 .hero.normal-mode .hero-scroll {
     display: block;
-    position: sticky;
-    top: 75%;
+    position: absolute;
+    bottom: 56%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
     cursor: pointer;
     animation: bounceDown 2s infinite;
-    width: fit-content;
-    margin: 0 auto;
-    margin-top: 15px;
 }
 
 .hero.normal-mode .hero-scroll i {
