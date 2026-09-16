@@ -396,12 +396,14 @@ img {
     height: auto;
     min-height: 0;
     padding-top: 0;
+    margin-top: 0;
 }
 
 .hero.normal-mode .hero-bg {
     position: relative;
     width: 100%;
-    margin-top: 70px;
+    padding-top: 70px;
+    background: var(--blue-dark);
 }
 
 .hero.normal-mode .hero-video {
@@ -412,21 +414,24 @@ img {
     display: block;
     width: 100%;
     height: auto;
-    max-height: calc(100vh - 70px);
+    max-height: 80vh;
     object-fit: cover;
     object-position: center top;
 }
 
 .hero.normal-mode .hero-overlay {
     position: absolute;
-    inset: 0;
+    top: 70px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: none;
 }
 
 .hero.normal-mode .hero-content {
     display: block;
     position: absolute;
-    bottom: 30%;
+    top: 50%;
     left: 0;
     right: 0;
     z-index: 2;
