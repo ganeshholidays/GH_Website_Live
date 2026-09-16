@@ -393,17 +393,15 @@ img {
 
 /* === NORMAL MODE: hero-default.jpg — final fallback with text overlay === */
 .hero.normal-mode {
-    height: calc(100vh - 70px);
-    min-height: 500px;
+    height: auto;
+    min-height: 0;
     padding-top: 0;
 }
 
 .hero.normal-mode .hero-bg {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    position: relative;
+    width: 100%;
+    margin-top: 70px;
 }
 
 .hero.normal-mode .hero-video {
@@ -413,19 +411,24 @@ img {
 .hero.normal-mode .hero-img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: calc(100vh - 70px);
     object-fit: cover;
+    object-position: center top;
 }
 
 .hero.normal-mode .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.8) 0%, rgba(26, 54, 93, 0.4) 100%);
+    background: none;
 }
 
 .hero.normal-mode .hero-content {
     display: block;
-    position: relative;
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
     z-index: 2;
     text-align: center;
     padding: 0 20px;
