@@ -412,7 +412,9 @@ img {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: 70px;
+    margin-top: -1px;
+    padding-top: 70px;
+    box-sizing: content-box;
 }
 
 .hero.normal-mode .hero-overlay {
@@ -427,7 +429,7 @@ img {
 .hero.normal-mode .hero-content {
     display: block;
     position: absolute;
-    bottom: 55%;
+    bottom: 60%;
     left: 0;
     right: 0;
     z-index: 2;
@@ -438,7 +440,7 @@ img {
 .hero.normal-mode .hero-scroll {
     display: block;
     position: absolute;
-    bottom: 45%;
+    bottom: 55%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
