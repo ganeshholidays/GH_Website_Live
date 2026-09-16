@@ -1422,6 +1422,44 @@ img {
         display: none;
     }
 
+    /* hero-default.jpg on mobile — full screen portrait style */
+    .hero.normal-mode {
+        height: 100vh;
+        min-height: 500px;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .hero.normal-mode .hero-bg {
+        position: absolute;
+        inset: 0;
+        padding-top: 70px;
+        margin-top: -3px;
+    }
+
+    .hero.normal-mode .hero-img {
+        height: 100%;
+        padding-top: 0;
+        margin-top: 0;
+        object-fit: cover;
+        box-sizing: border-box;
+    }
+
+    .hero.normal-mode .hero-overlay {
+        top: 0;
+    }
+
+    .hero.normal-mode .hero-content {
+        position: relative;
+        bottom: auto;
+        top: auto;
+        padding-top: 40%;
+    }
+
+    .hero.normal-mode .hero-scroll {
+        display: none;
+    }
+
     .nav-menu {
         position: fixed;
         top: 0;
