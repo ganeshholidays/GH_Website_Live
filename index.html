@@ -53,7 +53,7 @@
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="assets/hero/hero-video.mp4" type="video/mp4">
             </video>
-            <img src="" alt="India Travel" class="hero-img">
+            <img src="assets/hero/hero-default.jpg" alt="India Travel" class="hero-img">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -453,6 +453,18 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
+
+    <!-- Review Popup -->
+    <div class="review-popup" id="reviewPopup">
+        <div class="review-popup-overlay" onclick="closeReviewPopup()"></div>
+        <div class="review-popup-content">
+            <button class="review-popup-close" onclick="closeReviewPopup()">&times;</button>
+            <div class="review-popup-stars" id="popupStars"></div>
+            <p class="review-popup-text" id="popupText"></p>
+            <p class="review-popup-author" id="popupAuthor"></p>
+            <p class="review-popup-trip" id="popupTrip"></p>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
