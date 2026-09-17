@@ -389,6 +389,8 @@ function initReviewsSwiper() {
         }
     });
     addPauseOnTouch(inst);
+    // Setup Read More after swiper initializes
+    setTimeout(setupReviewReadMore, 500);
 }
 
 // Fetch Google Sheet reviews, add to DOM, then init swiper
@@ -540,7 +542,7 @@ function setupReviewReadMore() {
 
         var fullText = textEl.textContent || '';
         // If text is longer than 150 characters, it's likely truncated at 4 lines
-        if (fullText.length > 50) {
+        if (fullText.length > 150) {
             var existing = card.querySelector('.review-read-more');
             if (!existing) {
                 var readMore = document.createElement('span');
