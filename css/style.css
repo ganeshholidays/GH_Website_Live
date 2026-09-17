@@ -402,6 +402,16 @@ img {
     animation: bounceDown 2s infinite;
 }
 
+@media (min-width: 769px) {
+    .hero.normal-mode .hero-content {
+        top: 40%;
+    }
+
+    .hero.normal-mode .hero-scroll {
+        top: calc(40% + 130px);
+    }
+}
+
 .hero.normal-mode .hero-scroll i {
     color: rgba(255, 255, 255, 0.8);
     font-size: 24px;
