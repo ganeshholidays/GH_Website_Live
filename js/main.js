@@ -540,7 +540,7 @@ function setupReviewReadMore() {
 
         var fullText = textEl.textContent || '';
         // If text is longer than 150 characters, it's likely truncated at 4 lines
-        if (fullText.length > 150) {
+        if (fullText.length > 50) {
             var existing = card.querySelector('.review-read-more');
             if (!existing) {
                 var readMore = document.createElement('span');
