@@ -380,7 +380,7 @@ img {
 .hero.normal-mode .hero-content {
     display: block;
     position: absolute;
-    top: calc(50vh);
+    top: calc(50vh + 20px);
     left: 0;
     right: 0;
     transform: translateY(-50%);
@@ -392,7 +392,7 @@ img {
 .hero.normal-mode .hero-scroll {
     display: block;
     position: absolute;
-    top: calc(50vh + 100px);
+    top: calc(50vh + 120px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -1478,7 +1478,7 @@ img {
         position: relative;
         bottom: auto;
         top: auto;
-        padding-top: 35%;
+        padding-top: 40%;
     }
 
     .hero.normal-mode .hero-content .hero-subtitle {
