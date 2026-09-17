@@ -378,3 +378,123 @@ If you edit the Apps Script code:
 4. **Filter by destination** — Let visitors filter reviews by trip destination
 5. **Google Business integration** — Pull reviews from Google Maps listing automatically
 6. **Rate limiting** — Prevent spam submissions (add CAPTCHA or time-based limits)
+
+
+---
+
+## Removing Hardcoded Reviews (Cleanup)
+
+When you have enough Google Sheet reviews (at least 3-4 approved), you can remove the hardcoded placeholder reviews from the code.
+
+### When to do this
+- You have **4+ approved reviews** in your Google Sheet
+- The Google Sheet review system is working reliably
+- You want only real customer reviews on the website
+
+### Step 1: Edit index.html
+
+Open `index.html` and find the **Customer Experiences** section. Look for this code block:
+
+```html
+<div class="swiper reviews-swiper">
+    <div class="swiper-wrapper">
+    <div class="swiper-slide review-card">
+        <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="review-text" data-i18n="reviews.r1.text">"Amazing trip to Kerala! The driver was very professional and the car was spotlessly clean. Will definitely book again."</p>
+        <div class="review-author">
+            <div class="review-avatar">SK</div>
+            <div>
+                <strong data-i18n="reviews.r1.name">Suresh Kumar</strong>
+                <span data-i18n="reviews.r1.trip">Kerala Trip, March 2025</span>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-slide review-card">
+        <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="review-text" data-i18n="reviews.r2.text">"Booked for our family pilgrimage to Rameshwaram. Everything was perfectly arranged. Very trustworthy service."</p>
+        <div class="review-author">
+            <div class="review-avatar">PL</div>
+            <div>
+                <strong data-i18n="reviews.r2.name">Priya Lakshmi</strong>
+                <span data-i18n="reviews.r2.trip">Rameshwaram Trip, January 2025</span>
+            </div>
+        </div>
+    </div>
+    <div class="swiper-slide review-card">
+        <div class="review-stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+        <p class="review-text" data-i18n="reviews.r3.text">"Corporate event transport was handled flawlessly. 15 cars, all on time, all clean. Impressive coordination."</p>
+        <div class="review-author">
+            <div class="review-avatar">RM</div>
+            <div>
+                <strong data-i18n="reviews.r3.name">Rajesh Menon</strong>
+                <span data-i18n="reviews.r3.trip">Corporate Event, February 2025</span>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="swiper-button-prev reviews-prev"></div>
+    <div class="swiper-button-next reviews-next"></div>
+</div>
+```
+
+**Delete the 3 review card blocks** (everything between `<div class="swiper-wrapper">` and `</div>` that closes the wrapper). Replace with an empty wrapper:
+
+```html
+<div class="swiper reviews-swiper">
+    <div class="swiper-wrapper">
+        <!-- Reviews loaded from Google Sheet -->
+    </div>
+    <div class="swiper-button-prev reviews-prev"></div>
+    <div class="swiper-button-next reviews-next"></div>
+</div>
+```
+
+### Step 2: Clean up i18n.js (optional)
+
+Open `js/i18n.js` and delete these lines from the **English section**:
+
+```javascript
+        // DELETE these lines
+        "reviews.r1.text": "\"Amazing trip to Kerala!...",
+        "reviews.r1.name": "Suresh Kumar",
+        "reviews.r1.trip": "Kerala Trip, March 2025",
+        "reviews.r2.text": "\"Booked for our family pilgrimage...",
+        "reviews.r2.name": "Priya Lakshmi",
+        "reviews.r2.trip": "Rameshwaram Trip, January 2025",
+        "reviews.r3.text": "\"Corporate event transport...",
+        "reviews.r3.name": "Rajesh Menon",
+        "reviews.r3.trip": "Corporate Event, February 2025",
+```
+
+Also delete the same Tamil translations further down:
+
+```javascript
+        // DELETE these Tamil lines too
+        "reviews.r1.text": "\"கேரளா பயணம் அருமை!...",
+        "reviews.r1.name": "சுரேஷ் குமார்",
+        "reviews.r1.trip": "கேரளா பயணம், மார்ச் 2025",
+        "reviews.r2.text": "...",
+        "reviews.r2.name": "பிரியா லட்சுமி",
+        "reviews.r2.trip": "...",
+        "reviews.r3.text": "...",
+        "reviews.r3.name": "ராஜேஷ் மேனன்",
+        "reviews.r3.trip": "...",
+```
+
+This step is optional — leaving these lines won't break anything, they just won't be used anymore.
+
+### Step 3: Push to GitHub
+
+Upload the updated `index.html` (and `js/i18n.js` if cleaned up) to GitHub.
+
+### After cleanup
+
+- The Customer Experiences section shows **only Google Sheet reviews**
+- If no reviews are approved in the sheet, the section shows empty (just the title)
+- All reviews are managed entirely from Google Sheet — no code changes needed

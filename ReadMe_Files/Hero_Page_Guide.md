@@ -5,13 +5,13 @@
 The website checks for files in this order and loads the first one found:
 
 ```
-1. festival.jpg exists?        → Festival Mode
+1. festival.jpg exists?        → Festival Mode (swaps image)
         ↓ (not found)
-2. hero-video.mp4 exists?      → Video Mode
-        ↓ (not found or slow load > 10 sec)
-3. hero.jpg exists?            → Hero Fallback Mode (same look as video)
-        ↓ (not found)
-4. hero-default.jpg            → Normal Mode (full screen + text overlay)
+2. hero-video.mp4 FILE exists? → Try Video Mode (swaps to video)
+        ↓ (video plays)        → Video Mode
+        ↓ (slow/blocked)       → Stays on hero-default.jpg (Normal Mode)
+        ↓ (file not found)
+3. hero-default.jpg            → Already loaded from HTML (instant, no delay)
 ```
 
 ---
@@ -20,8 +20,7 @@ The website checks for files in this order and loads the first one found:
 
 | File | Size | Required? | Purpose |
 |------|------|-----------|---------|
-| `assets/hero/hero-default.jpg` | 1920 x 1080 (16:9) | **YES — always keep** | Final fallback. Taj Mahal with "Explore All of India" text overlay |
-| `assets/hero/hero.jpg` | 1920 x 1080 (16:9) | Optional | Video fallback image. Shows when video is slow/unavailable. Same size/fit as video (no text overlay) |
+| `assets/hero/hero-default.jpg` | 1920 x 1080 (16:9) | **YES — always keep** | Default hero. Loads instantly. Shows with text overlay |
 | `assets/hero/hero-video.mp4` | 1920 x 1080 (16:9), under 5MB, 5-8 sec | Optional | Auto-playing video hero |
 | `assets/hero/festival.jpg` | 1920 x 1080 (16:9) | Optional | Festival banner (highest priority) |
 
@@ -161,19 +160,25 @@ See `Documents/Festival_Hero_Image_Guide.md` for festival-specific prompts.
 ```
 Page loads
     ↓
-Check festival.jpg ──── found? ──→ Show festival banner
-    ↓ (not found)
-Check hero-video.mp4
+hero-default.jpg starts loading immediately (from HTML src)
     ↓
-    ├── Video loads in < 10 sec ──→ Play video
-    ├── Video loads but autoplay blocked ──→ Show hero.jpg
-    ├── Video file not found ──→ Show hero.jpg
-    └── 10 seconds pass, no video ──→ Show hero.jpg
+Normal mode applied → user sees temple image instantly
     ↓
-Check hero.jpg ──── found? ──→ Show hero.jpg (same size as video, no text)
+Check festival.jpg ──── found? ──→ Swap to festival banner
     ↓ (not found)
-Show hero-default.jpg ──→ Full screen + "Explore All of India" text
+Check hero-video.mp4 FILE exists? (HEAD request)
+    ↓
+    ├── File exists:
+    │     ├── Video plays in < 10 sec ──→ Swap to video
+    │     ├── Video autoplay blocked ──→ Stay on hero-default
+    │     └── 10 seconds pass, no video ──→ Stay on hero-default
+    │
+    └── File NOT found (404):
+          ↓
+          Stay on hero-default.jpg (already showing)
 ```
+
+**No blank hero page.** The default image loads from HTML immediately — JS only upgrades to festival/video if available.
 
 ---
 
@@ -181,9 +186,8 @@ Show hero-default.jpg ──→ Full screen + "Explore All of India" text
 
 | File | Content | Status |
 |------|---------|--------|
-| `hero-default.jpg` | Taj Mahal photo | ✅ Always present |
-| `hero.jpg` | (Upload your designed banner) | Optional |
-| `hero-video.mp4` | (Upload your Canva/Pexels video) | Optional |
+| `hero-default.jpg` | Temple photo | ✅ Always present |
+| `hero-video.mp4` | (Upload your video) | Optional |
 | `festival.jpg` | (Upload during festivals only) | Optional |
 
 All files go in `assets/hero/` folder.
@@ -194,12 +198,11 @@ All files go in `assets/hero/` folder.
 
 | I want to... | Upload/Delete |
 |--------------|--------------|
-| Show video | Upload `hero-video.mp4` + `hero.jpg` to `assets/hero/` |
+| Show video | Upload `hero-video.mp4` to `assets/hero/` |
 | Show festival banner | Upload `festival.jpg` to `assets/hero/` |
 | Remove festival | Delete `festival.jpg` from `assets/hero/` |
 | Remove video | Delete `hero-video.mp4` from `assets/hero/` |
 | Change default image | Replace `hero-default.jpg` in `assets/hero/` |
-| Change video fallback image | Replace `hero.jpg` in `assets/hero/` |
 
 
 ---
