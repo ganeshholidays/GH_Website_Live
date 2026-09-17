@@ -803,7 +803,7 @@ img {
     box-shadow: var(--shadow-sm);
     border: 1px solid var(--gray-100);
     transition: var(--transition);
-    min-height: 220px;
+    height: 250px;
     display: flex;
     flex-direction: column;
 }
