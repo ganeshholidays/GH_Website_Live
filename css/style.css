@@ -348,6 +348,8 @@ img {
     min-height: 0;
     padding-top: 0;
     margin-top: 0;
+    overflow: hidden;
+    position: relative;
 }
 
 .hero.normal-mode .hero-bg {
@@ -380,7 +382,7 @@ img {
 .hero.normal-mode .hero-content {
     display: block;
     position: absolute;
-    top: calc(50vh + 20px);
+    top: 50%;
     left: 0;
     right: 0;
     transform: translateY(-50%);
@@ -392,7 +394,7 @@ img {
 .hero.normal-mode .hero-scroll {
     display: block;
     position: absolute;
-    top: calc(50vh + 120px);
+    top: calc(50% + 100px);
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
