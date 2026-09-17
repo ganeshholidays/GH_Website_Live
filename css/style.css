@@ -1475,10 +1475,14 @@ img {
     }
 
     .hero.normal-mode .hero-content {
-        position: relative;
+        position: absolute;
         bottom: auto;
-        top: auto;
-        padding-top: 40%;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        padding-top: 0;
+        padding: 0 20px;
     }
 
     .hero.normal-mode .hero-content .hero-subtitle {
