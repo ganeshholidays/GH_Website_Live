@@ -4,57 +4,53 @@
    ============================================ */
 
 // === HERO: Auto-detect festival banner or video ===
-// Priority: festival.jpg > hero-video.mp4 (fallback: hero.jpg) > hero-default.jpg
+// Priority: festival.jpg > hero-video.mp4 > hero-default.jpg (already loaded in HTML)
 (function() {
     const hero = document.querySelector('.hero');
     const heroImg = document.querySelector('.hero-img');
     const heroVideo = document.querySelector('.hero-video');
     if (!hero || !heroImg) return;
 
+    // Default mode — applied immediately (hero-default.jpg already loading from HTML src)
+    hero.classList.add('normal-mode');
+
     var festivalFile = 'assets/hero/festival.jpg';
 
     // Step 1: Check if festival image exists
     var testFestival = new Image();
     testFestival.onload = function() {
+        hero.classList.remove('normal-mode');
         heroImg.src = festivalFile;
         hero.classList.add('festival-mode');
     };
     testFestival.onerror = function() {
-        // Step 2: Check if video FILE exists by trying to fetch it
+        // Step 2: Check if video file exists
         fetch('assets/hero/hero-video.mp4', { method: 'HEAD' })
             .then(function(response) {
-                if (response.ok) {
-                    // Video file exists — try to play it
+                if (response.ok && heroVideo) {
                     loadVideo();
-                } else {
-                    // Video file not found (404) — go to hero-default.jpg
-                    loadHeroDefault();
                 }
+                // If not found, normal-mode stays (hero-default already showing)
             })
             .catch(function() {
-                // Fetch failed — go to hero-default.jpg
-                loadHeroDefault();
+                // Fetch failed — normal-mode stays
             });
     };
     testFestival.src = festivalFile;
 
-    // Step 2b: Try playing the video, fallback to hero.jpg after 10 sec
+    // Try playing the video
     function loadVideo() {
-        if (!heroVideo) {
-            loadHeroDefault();
-            return;
-        }
-
         var videoLoaded = false;
 
         heroVideo.addEventListener('canplay', function() {
             if (videoLoaded) return;
             videoLoaded = true;
+            hero.classList.remove('normal-mode');
             hero.classList.add('video-mode');
             heroVideo.play().catch(function() {
-                // Autoplay blocked — fall back to hero.jpg
+                // Autoplay blocked — revert to hero-default
                 hero.classList.remove('video-mode');
-                loadHeroJpg();
+                hero.classList.add('normal-mode');
             });
         }, { once: true });
 
@@ -63,31 +59,19 @@
             sourceEl.addEventListener('error', function() {
                 if (videoLoaded) return;
                 videoLoaded = true;
-                loadHeroJpg();
+                // Video failed — normal-mode stays
             }, { once: true });
         }
 
         heroVideo.load();
 
-        // Timeout — if video doesn't play in 10 seconds, show hero.jpg
+        // Timeout — 10 seconds
         setTimeout(function() {
             if (!videoLoaded && !hero.classList.contains('video-mode')) {
                 videoLoaded = true;
-                loadHeroJpg();
+                // Timeout — normal-mode stays (hero-default already showing)
             }
         }, 10000);
-    }
-
-    // Step 3: hero.jpg — video fallback (same height/fit as video, no text)
-    function loadHeroJpg() {
-        heroImg.src = 'assets/hero/hero.jpg';
-        hero.classList.add('hero-fallback-mode');
-    }
-
-    // Step 4: hero-default.jpg — no video exists, full screen + blue shade + text
-    function loadHeroDefault() {
-        heroImg.src = 'assets/hero/hero-default.jpg';
-        hero.classList.add('normal-mode');
     }
 })();
 
@@ -545,3 +529,61 @@ var viewAllBtn = document.getElementById('viewAllGallery');
 if (viewAllBtn) {
     viewAllBtn.addEventListener('click', openLightbox);
 }
+
+
+// === REVIEW READ MORE + POPUP ===
+function setupReviewReadMore() {
+    var reviewTexts = document.querySelectorAll('.review-text');
+    reviewTexts.forEach(function(textEl) {
+        // Check if text is truncated (overflowing)
+        if (textEl.scrollHeight > textEl.clientHeight + 5) {
+            // Add "Read More" link after the text
+            var existing = textEl.parentElement.querySelector('.review-read-more');
+            if (!existing) {
+                var readMore = document.createElement('span');
+                readMore.className = 'review-read-more';
+                readMore.textContent = 'Read More ›';
+                readMore.style.display = 'block';
+                readMore.onclick = function() {
+                    var card = textEl.closest('.review-card');
+                    if (card) openReviewPopup(card);
+                };
+                textEl.after(readMore);
+            }
+        }
+    });
+}
+
+function openReviewPopup(card) {
+    var popup = document.getElementById('reviewPopup');
+    if (!popup) return;
+
+    var stars = card.querySelector('.review-stars');
+    var text = card.querySelector('.review-text');
+    var author = card.querySelector('.review-author strong');
+    var trip = card.querySelector('.review-author span');
+
+    document.getElementById('popupStars').innerHTML = stars ? stars.innerHTML : '';
+    document.getElementById('popupText').textContent = text ? text.textContent : '';
+    document.getElementById('popupAuthor').textContent = author ? author.textContent : '';
+    document.getElementById('popupTrip').textContent = trip ? trip.textContent : '';
+
+    popup.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeReviewPopup() {
+    var popup = document.getElementById('reviewPopup');
+    if (popup) {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Escape key to close
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeReviewPopup();
+});
+
+// Run after a short delay to ensure all reviews (including Google Sheet) are loaded
+setTimeout(setupReviewReadMore, 3000);
