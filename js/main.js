@@ -533,20 +533,23 @@ if (viewAllBtn) {
 
 // === REVIEW READ MORE + POPUP ===
 function setupReviewReadMore() {
-    var reviewTexts = document.querySelectorAll('.review-text');
-    reviewTexts.forEach(function(textEl) {
-        // Check if text is truncated (overflowing)
-        if (textEl.scrollHeight > textEl.clientHeight + 5) {
-            // Add "Read More" link after the text
-            var existing = textEl.parentElement.querySelector('.review-read-more');
+    var reviewCards = document.querySelectorAll('.review-card');
+    reviewCards.forEach(function(card) {
+        var textEl = card.querySelector('.review-text');
+        if (!textEl) return;
+
+        var fullText = textEl.textContent || '';
+        // If text is longer than 150 characters, it's likely truncated at 4 lines
+        if (fullText.length > 150) {
+            var existing = card.querySelector('.review-read-more');
             if (!existing) {
                 var readMore = document.createElement('span');
                 readMore.className = 'review-read-more';
                 readMore.textContent = 'Read More ›';
                 readMore.style.display = 'block';
-                readMore.onclick = function() {
-                    var card = textEl.closest('.review-card');
-                    if (card) openReviewPopup(card);
+                readMore.onclick = function(e) {
+                    e.stopPropagation();
+                    openReviewPopup(card);
                 };
                 textEl.after(readMore);
             }
