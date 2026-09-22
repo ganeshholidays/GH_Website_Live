@@ -300,7 +300,7 @@ Approved reviews show up in the **"Customer Experiences"** section with:
 - **Customer name** — from the Name column
 - **Trip info** — from the Destination column
 
-They appear in the **exact same style** as the existing hardcoded reviews. Visitors can't tell the difference between hardcoded and Google Sheet reviews.
+They are displayed in the **Customer Experiences** section as swiper cards with stars, text, avatar initials, name, and trip info.
 
 ---
 
@@ -311,11 +311,11 @@ They appear in the **exact same style** as the existing hardcoded reviews. Visit
 3. The Apps Script reads the Google Sheet
 4. Filters rows where Approved = `YES`
 5. Returns the data as JSON array
-6. JavaScript creates review cards (same HTML structure as hardcoded ones)
+6. JavaScript creates review cards for each approved review
 7. Appends them to the reviews swiper/grid
 8. On mobile, the swiper is updated to include the new slides
 
-**If the fetch fails** (network error, Apps Script down), the website silently falls back to showing only the 3 hardcoded reviews. No error is visible to visitors.
+**If the fetch fails** (network error, Apps Script down), the reviews section will be empty. No error is visible to visitors.
 
 ---
 
@@ -329,7 +329,7 @@ They appear in the **exact same style** as the existing hardcoded reviews. Visit
 | **Want to edit a review before displaying** | Edit the Feedback or Name cell in the Google Sheet directly. Website picks up the edited version on next load. |
 | **Want to remove a published review** | Change `YES` to `NO` or blank, or delete the row. It disappears from the website on next page load. |
 | **Reviews appear slowly** | Google Apps Script has ~1-2 second response time. This is normal for the free tier. |
-| **Apps Script says "exceeded quota"** | Google allows ~20,000 requests/day on free tier. If exceeded, reviews still show from cache/hardcoded. Reset next day. |
+| **Apps Script says "exceeded quota"** | Google allows ~20,000 requests/day on free tier. If exceeded, reviews section will be empty until next day. |
 | **Need to update the Apps Script** | Go to Extensions → Apps Script in the Sheet. Edit the code. Click Deploy → Manage deployments → Edit (pencil icon) → New version → Deploy. |
 
 ---
@@ -351,8 +351,10 @@ If you edit the Apps Script code:
 ## Important Notes
 
 - **Photo uploads:** Currently photos are accepted in the form for your reference but NOT displayed on the website. The photo is not stored anywhere — it's just a UX element for the customer. To display photos, Google Drive integration would be needed (can be added later).
-- **Review order:** Google Sheet reviews appear after the 3 hardcoded reviews, in the order they appear in the sheet (top to bottom).
-- **Hardcoded reviews remain:** The existing reviews (Suresh Kumar, Priya Lakshmi, Rajesh Menon) always show. Google Sheet reviews are added alongside them.
+- **Review order:** Reviews appear in the order they are in the Google Sheet (top to bottom).
+- **No hardcoded reviews:** All reviews come from the Google Sheet. If no reviews are approved, the section shows empty.
+- **No limit on reviews:** The code fetches ALL approved reviews — 4, 40, or 400. The swiper carousel handles unlimited slides.
+- **Long reviews:** Reviews longer than 150 characters show "Read More" link. Click opens a popup with the full review.
 - **Free limits:** Google Apps Script allows ~20,000 requests/day and 6 minutes execution time. More than enough for your usage.
 - **Backup:** The Google Sheet IS your backup. You can download it as Excel/CSV anytime.
 - **Domain-independent:** The review system works on any domain (ganeshholidays.github.io, ganeshholidays.in, etc.) — no code changes needed when switching domains.
@@ -382,119 +384,19 @@ If you edit the Apps Script code:
 
 ---
 
-## Removing Hardcoded Reviews (Cleanup)
+## Syncing Google Business Reviews to Website
 
-When you have enough Google Sheet reviews (at least 3-4 approved), you can remove the hardcoded placeholder reviews from the code.
+Google Business reviews **cannot be auto-synced** for free (the API costs money). Instead, manually copy good Google reviews to your Google Sheet:
 
-### When to do this
-- You have **4+ approved reviews** in your Google Sheet
-- The Google Sheet review system is working reliably
-- You want only real customer reviews on the website
+1. Open Google Business Profile → Reviews
+2. Find the review you want on your website
+3. Open your Google Sheet (`GH_Reviews`)
+4. Add a new row:
 
-### Step 1: Edit index.html
+| Timestamp | Name | Phone | Destination | Rating | Feedback | Approved |
+|-----------|------|-------|-------------|--------|----------|----------|
+| (date) | (reviewer name) | — | (if mentioned) | (star count) | (copy review text) | YES |
 
-Open `index.html` and find the **Customer Experiences** section. Look for this code block:
+5. Review appears on your website automatically
 
-```html
-<div class="swiper reviews-swiper">
-    <div class="swiper-wrapper">
-    <div class="swiper-slide review-card">
-        <div class="review-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p class="review-text" data-i18n="reviews.r1.text">"Amazing trip to Kerala! The driver was very professional and the car was spotlessly clean. Will definitely book again."</p>
-        <div class="review-author">
-            <div class="review-avatar">SK</div>
-            <div>
-                <strong data-i18n="reviews.r1.name">Suresh Kumar</strong>
-                <span data-i18n="reviews.r1.trip">Kerala Trip, March 2025</span>
-            </div>
-        </div>
-    </div>
-    <div class="swiper-slide review-card">
-        <div class="review-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-        </div>
-        <p class="review-text" data-i18n="reviews.r2.text">"Booked for our family pilgrimage to Rameshwaram. Everything was perfectly arranged. Very trustworthy service."</p>
-        <div class="review-author">
-            <div class="review-avatar">PL</div>
-            <div>
-                <strong data-i18n="reviews.r2.name">Priya Lakshmi</strong>
-                <span data-i18n="reviews.r2.trip">Rameshwaram Trip, January 2025</span>
-            </div>
-        </div>
-    </div>
-    <div class="swiper-slide review-card">
-        <div class="review-stars">
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-        </div>
-        <p class="review-text" data-i18n="reviews.r3.text">"Corporate event transport was handled flawlessly. 15 cars, all on time, all clean. Impressive coordination."</p>
-        <div class="review-author">
-            <div class="review-avatar">RM</div>
-            <div>
-                <strong data-i18n="reviews.r3.name">Rajesh Menon</strong>
-                <span data-i18n="reviews.r3.trip">Corporate Event, February 2025</span>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="swiper-button-prev reviews-prev"></div>
-    <div class="swiper-button-next reviews-next"></div>
-</div>
-```
-
-**Delete the 3 review card blocks** (everything between `<div class="swiper-wrapper">` and `</div>` that closes the wrapper). Replace with an empty wrapper:
-
-```html
-<div class="swiper reviews-swiper">
-    <div class="swiper-wrapper">
-        <!-- Reviews loaded from Google Sheet -->
-    </div>
-    <div class="swiper-button-prev reviews-prev"></div>
-    <div class="swiper-button-next reviews-next"></div>
-</div>
-```
-
-### Step 2: Clean up i18n.js (optional)
-
-Open `js/i18n.js` and delete these lines from the **English section**:
-
-```javascript
-        // DELETE these lines
-        "reviews.r1.text": "\"Amazing trip to Kerala!...",
-        "reviews.r1.name": "Suresh Kumar",
-        "reviews.r1.trip": "Kerala Trip, March 2025",
-        "reviews.r2.text": "\"Booked for our family pilgrimage...",
-        "reviews.r2.name": "Priya Lakshmi",
-        "reviews.r2.trip": "Rameshwaram Trip, January 2025",
-        "reviews.r3.text": "\"Corporate event transport...",
-        "reviews.r3.name": "Rajesh Menon",
-        "reviews.r3.trip": "Corporate Event, February 2025",
-```
-
-Also delete the same Tamil translations further down:
-
-```javascript
-        // DELETE these Tamil lines too
-        "reviews.r1.text": "\"கேரளா பயணம் அருமை!...",
-        "reviews.r1.name": "சுரேஷ் குமார்",
-        "reviews.r1.trip": "கேரளா பயணம், மார்ச் 2025",
-        "reviews.r2.text": "...",
-        "reviews.r2.name": "பிரியா லட்சுமி",
-        "reviews.r2.trip": "...",
-        "reviews.r3.text": "...",
-        "reviews.r3.name": "ராஜேஷ் மேனன்",
-        "reviews.r3.trip": "...",
-```
-
-This step is optional — leaving these lines won't break anything, they just won't be used anymore.
-
-### Step 3: Push to GitHub
-
-Upload the updated `index.html` (and `js/i18n.js` if cleaned up) to GitHub.
-
-### After cleanup
-
-- The Customer Experiences section shows **only Google Sheet reviews**
-- If no reviews are approved in the sheet, the section shows empty (just the title)
-- All reviews are managed entirely from Google Sheet — no code changes needed
+**Tip:** Ask every happy customer to review on BOTH Google and your website for maximum impact.

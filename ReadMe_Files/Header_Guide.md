@@ -252,3 +252,35 @@ In `css/style.css` under `@media (max-width: 768px)`:
 | Tagline color | `.logo-tagline { color: ... }` | `css/style.css` |
 | Mobile menu color | `.nav-menu { background: ... }` (inside 768px media query) | `css/style.css` |
 | Hamburger line color | `.nav-hamburger span { background: ... }` | `css/style.css` |
+
+
+---
+
+## Website Title (Browser Tab / Google Search)
+
+The page title shows in the browser tab, Chrome history, Google search results, and when shared on WhatsApp/social media.
+
+### Current titles:
+
+| Page | Title | File |
+|------|-------|------|
+| Main website | Ganesh Holidays - Tour & Travel | `index.html` line 6 |
+| Review page | Share Your Experience - Ganesh Holidays | `review.html` line 5 |
+
+### To change:
+In `index.html`:
+```html
+<title>Ganesh Holidays - Tour & Travel</title>
+<!-- Change the text between <title> and </title> -->
+```
+
+In `review.html`:
+```html
+<title>Share Your Experience - Ganesh Holidays</title>
+```
+
+### Meta description (shows below title in Google search):
+```html
+<meta name="description" content="Ganesh Holidays - Your trusted All India tour and travel partner. Your Journey, Our Commitment.">
+```
+Change the `content` text to update what Google shows below your website link in search results.
