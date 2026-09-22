@@ -387,7 +387,7 @@ function initReviewsSwiper() {
                 slidesPerView: 3,
                 spaceBetween: 20,
                 centeredSlides: false,
-                loop: totalSlides > 6,
+                loop: totalSlides > 3,
             }
         }
     });
@@ -544,8 +544,8 @@ function setupReviewReadMore() {
         if (!textEl) return;
 
         var fullText = textEl.textContent || '';
-        // If text is longer than 150 characters, it's likely truncated at 4 lines
-        if (fullText.length > 150) {
+        // If text is longer than 80 characters, it's likely truncated at 4 lines
+        if (fullText.length > 80) {
             var existing = card.querySelector('.review-read-more');
             if (!existing) {
                 var readMore = document.createElement('span');
