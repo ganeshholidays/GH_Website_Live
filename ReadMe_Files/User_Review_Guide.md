@@ -325,12 +325,74 @@ They are displayed in the **Customer Experiences** section as swiper cards with 
 |---------|----------|
 | **Not getting email notifications** | Check spam folder. Verify email address in Apps Script code. Check Apps Script execution log (Extensions → Apps Script → Executions). |
 | **Review not showing on website** | Make sure you typed `YES` in column G (Approved). The code checks case-insensitively so `yes`, `Yes`, `YES` all work. Clear browser cache and refresh. |
+| **"Loading reviews..." appears then disappears but no reviews show** | The Apps Script is down or returning empty data. See "How to Fix Reviews Not Loading" below. |
 | **Form submission shows error** | Check that the Web App URL is correct in `review.html`. Re-deploy the Apps Script if URL changed. |
 | **Want to edit a review before displaying** | Edit the Feedback or Name cell in the Google Sheet directly. Website picks up the edited version on next load. |
 | **Want to remove a published review** | Change `YES` to `NO` or blank, or delete the row. It disappears from the website on next page load. |
-| **Reviews appear slowly** | Google Apps Script has ~1-2 second response time. This is normal for the free tier. |
+| **Reviews appear slowly** | Google Apps Script has ~1-2 second response time. This is normal for the free tier. A "Loading reviews..." spinner shows during this time. |
 | **Apps Script says "exceeded quota"** | Google allows ~20,000 requests/day on free tier. If exceeded, reviews section will be empty until next day. |
+| **"Unable to open file" error when opening Apps Script URL** | Re-deploy the Apps Script (see below). Also try clearing browser cache or opening in incognito. |
+| **Reviews work on laptop but not mobile (or vice versa)** | Mobile network may be blocking `script.google.com`. Try on WiFi. Clear browser cache. Try incognito tab. |
 | **Need to update the Apps Script** | Go to Extensions → Apps Script in the Sheet. Edit the code. Click Deploy → Manage deployments → Edit (pencil icon) → New version → Deploy. |
+
+---
+
+## How to Fix Reviews Not Loading
+
+If the reviews section shows "Loading reviews..." then goes empty, follow these steps:
+
+### Step 1: Test the Apps Script URL
+
+1. Open this URL in your browser (laptop or mobile):
+```
+https://script.google.com/macros/s/AKfycby-KUQsQT21ieeWNWbKTj8OyLINmpC22OXIfVM3VmKEwPEM1FkbX4XTpqd12YRw6a6jEQ/exec
+```
+
+2. **If you see JSON data** like `[{"name":"...","rating":5,...}]` → URL is working. Clear browser cache on the device where reviews aren't loading.
+
+3. **If you see "Unable to open file"** or error → re-deploy (Step 2).
+
+4. **If the page doesn't load at all** → network issue. Try WiFi or different browser.
+
+### Step 2: Re-deploy the Apps Script
+
+1. Open your **Google Sheet** (`GH_Reviews`) on laptop
+2. Click **Extensions → Apps Script**
+3. Click **Deploy → Manage deployments**
+4. Click the **pencil icon** (edit) on your deployment
+5. Under **Version** → select **New version**
+6. Click **Deploy**
+7. Copy the **Web App URL**
+
+### Step 3: Check if URL changed
+
+Compare the new URL with the current URL in the code. If it's the **same URL** → you're done, test again.
+
+If the **URL changed**, update it in 2 files:
+
+**File 1: `review.html`**
+Find near the top of the script section:
+```javascript
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/OLD_URL/exec';
+```
+Replace with the new URL.
+
+**File 2: `js/main.js`**
+Find near the reviews section:
+```javascript
+const REVIEWS_SCRIPT_URL = 'https://script.google.com/macros/s/OLD_URL/exec';
+```
+Replace with the new URL.
+
+### Step 4: Push to GitHub
+
+Upload both `review.html` and `js/main.js` to GitHub.
+
+### Step 5: Test
+
+1. Open `ganeshholidays.in` in incognito/private tab
+2. Scroll to Customer Experiences
+3. Reviews should load within 1-3 seconds
 
 ---
 
