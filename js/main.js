@@ -373,9 +373,11 @@ function createReviewCard(review) {
 }
 
 function initReviewsSwiper() {
+    var totalSlides = document.querySelectorAll('.reviews-swiper .swiper-slide').length;
     var inst = new Swiper('.reviews-swiper', {
         ...swiperConfig,
         slidesPerView: 1,
+        loop: totalSlides > 3,
         navigation: {
             nextEl: '.reviews-next',
             prevEl: '.reviews-prev',
@@ -385,6 +387,7 @@ function initReviewsSwiper() {
                 slidesPerView: 3,
                 spaceBetween: 20,
                 centeredSlides: false,
+                loop: totalSlides > 6,
             }
         }
     });
