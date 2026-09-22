@@ -402,6 +402,10 @@ function initReviewsSwiper() {
         fetch(REVIEWS_SCRIPT_URL)
             .then(function(res) { return res.json(); })
             .then(function(reviews) {
+                // Remove loading indicator
+                var loadingEl = document.getElementById('reviewsLoading');
+                if (loadingEl) loadingEl.remove();
+
                 if (reviews && reviews.length) {
                     var wrapper = document.querySelector('.reviews-swiper .swiper-wrapper');
                     if (wrapper) {
@@ -413,7 +417,11 @@ function initReviewsSwiper() {
                 initReviewsSwiper();
             })
             .catch(function() {
-                // Fetch failed — init swiper with hardcoded reviews only
+                // Remove loading indicator
+                var loadingEl = document.getElementById('reviewsLoading');
+                if (loadingEl) loadingEl.remove();
+
+                // Fetch failed — init swiper anyway
                 initReviewsSwiper();
             });
     } else {
