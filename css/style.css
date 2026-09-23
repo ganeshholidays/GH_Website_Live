@@ -1402,7 +1402,7 @@ img {
     right: 30px;
     width: 45px;
     height: 45px;
-    background: #6b7280;
+    background: rgba(0, 0, 0, 0.15);
     color: #ffffff;
     border: none;
     border-radius: 50%;
@@ -1425,7 +1425,7 @@ img {
 
 .back-to-top:hover {
     transform: translateY(-3px);
-    background: #4b5563;
+    background: rgba(0, 0, 0, 0.25);
 }
 
 /* === ANIMATIONS (Fade in on scroll) === */
