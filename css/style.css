@@ -1239,9 +1239,25 @@ img {
     transition: var(--transition);
 }
 
+.contact-social a[aria-label="Facebook"] {
+    color: #1877F2;
+}
+
+.contact-social a[aria-label="Instagram"] {
+    color: #E4405F;
+}
+
+.contact-social a[aria-label="YouTube"] {
+    color: #FF0000;
+}
+
+.contact-social a[aria-label="WhatsApp"] {
+    color: #25D366;
+}
+
 .contact-social a:hover {
-    background: var(--gold);
-    color: white;
+    transform: translateY(-3px);
+}
 }
 
 /* Contact Form */
