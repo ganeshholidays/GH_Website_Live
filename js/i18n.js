@@ -141,7 +141,7 @@ const translations = {
         "contact.form.submit": "Send Enquiry",
 
         // Footer
-        "footer.desc": "Your trusted All-India tour and travel partner. Making every journey memorable since 2020.",
+        "footer.desc": "Your trusted tour and travel partner. Making every journey memorable since 2020.",
         "footer.quicklinks": "Quick Links",
         "footer.popular": "Popular Destinations",
         "footer.rights": "All rights reserved.",
@@ -298,7 +298,7 @@ const translations = {
         "contact.form.submit": "விசாரணை அனுப்பு",
 
         // Footer
-        "footer.desc": "உங்கள் நம்பகமான அகில இந்திய சுற்றுலா மற்றும் பயண பங்குதாரர். 2020 முதல் ஒவ்வொரு பயணத்தையும் மறக்கமுடியாததாக மாற்றுகிறோம்.",
+        "footer.desc": "உங்கள் நம்பகமான சுற்றுலா மற்றும் பயண பங்குதாரர். 2020 முதல் ஒவ்வொரு பயணத்தையும் மறக்கமுடியாததாக மாற்றுகிறோம்.",
         "footer.quicklinks": "விரைவு இணைப்புகள்",
         "footer.popular": "பிரபலமான இடங்கள்",
         "footer.rights": "அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
