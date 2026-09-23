@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             // Open WhatsApp (change number to actual number)
-            window.open(`https://wa.me/917708109824?text=${whatsappMsg}`, '_blank');
+            window.open(`https://wa.me/919443943153?text=${whatsappMsg}`, '_blank');
 
             // Reset form
             contactForm.reset();
