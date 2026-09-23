@@ -428,12 +428,12 @@ img {
 .hero.normal-mode .hero-content .btn-primary {
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid #ffffff;
 }
 
 .hero.normal-mode .hero-content .btn-primary:hover {
     background: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: #ffffff;
 }
 
 .hero-title {
