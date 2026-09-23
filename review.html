@@ -104,14 +104,16 @@
             margin-bottom: 10px;
         }
         .review-lang .lang-toggle {
-            background: #edf2f7;
+            background: transparent;
+            border: 1px solid var(--blue-dark);
         }
         .review-lang .lang-btn {
-            color: #4a5568;
+            color: var(--blue-dark);
         }
         .review-lang .lang-btn.active {
-            background: var(--gold);
-            color: #1a202c;
+            background: var(--blue-dark);
+            color: #ffffff;
+            border-radius: 18px;
         }
         .review-note {
             text-align: center;
@@ -289,17 +291,25 @@
                 body: JSON.stringify(reviewData)
             })
             .finally(function() {
-                // With no-cors, we can't read the response
-                // Show success regardless — data is sent to Apps Script
+                // Hide the review header (Thank you for traveling message)
+                var reviewHeader = document.querySelector('.review-header');
+                if (reviewHeader) reviewHeader.style.display = 'none';
+
+                // Show success message
                 document.querySelector('.review-form').innerHTML = `
                     <div style="text-align:center; padding:30px 0;">
                         <div style="font-size:50px; margin-bottom:15px; color:#48bb78;"><i class="fas fa-check-circle"></i></div>
-                        <h2 style="color:var(--blue-dark); margin-bottom:10px;">Thank You!</h2>
-                        <p style="color:var(--gray-500); font-size:14px;">Your review has been submitted successfully.<br>It will appear on our website after verification.</p>
-                        <a href="/" class="btn btn-primary" style="margin-top:20px; display:inline-block;">Back to Home</a>
+                        <h2 style="color:var(--blue-dark); margin-bottom:10px;" data-i18n="review.success.title">Thank You!</h2>
+                        <p style="color:var(--gray-500); font-size:14px;" data-i18n="review.success.message">Your review has been submitted successfully. It will appear on our website after verification.</p>
+                        <a href="/" class="btn btn-primary" style="margin-top:20px; display:inline-block;" data-i18n="review.success.back">Back to Home</a>
                     </div>
                 `;
                 document.querySelector('.review-note').style.display = 'none';
+
+                // Re-apply translations to the new content
+                if (typeof applyTranslations === 'function') {
+                    applyTranslations();
+                }
             });
         });
     </script>
