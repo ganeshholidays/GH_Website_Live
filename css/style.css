@@ -213,9 +213,9 @@ img {
 }
 
 .lang-btn.active {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    background: #ffffff;
+    color: #0f172a;
+    border: none;
     border-radius: 18px;
 }
 
