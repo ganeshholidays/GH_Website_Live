@@ -450,8 +450,6 @@ function initReviewsSwiper() {
 
     fetchReviews();
 })();
-    }
-})();
 
 // Gallery carousel (works on both mobile and desktop)
 fetch('assets/photos.json')
