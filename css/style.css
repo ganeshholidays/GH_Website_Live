@@ -616,14 +616,43 @@ img {
 .service-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-    border-radius: 50%;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 18px;
-    color: white;
-    font-size: 22px;
+    font-size: 24px;
+}
+
+/* Individual service icon colors */
+.service-icon.icon-rental {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+}
+
+.service-icon.icon-driver {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8B5CF6;
+}
+
+.service-icon.icon-holiday {
+    background: rgba(245, 158, 11, 0.1);
+    color: #F59E0B;
+}
+
+.service-icon.icon-pilgrimage {
+    background: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}
+
+.service-icon.icon-family {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+}
+
+.service-icon.icon-corporate {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366F1;
 }
 
 .service-card h3 {
