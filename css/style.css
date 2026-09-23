@@ -1194,14 +1194,29 @@ img {
 .contact-item i {
     width: 40px;
     height: 40px;
-    background: var(--blue-dark);
-    color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 16px;
     flex-shrink: 0;
+    color: white;
+}
+
+.contact-item .fa-phone {
+    background: #0078d4;
+}
+
+.contact-item .fa-whatsapp {
+    background: #25D366;
+}
+
+.contact-item .fa-envelope {
+    background: #EA4335;
+}
+
+.contact-item .fa-map-marker-alt {
+    background: #FF6D00;
 }
 
 .contact-item strong {
