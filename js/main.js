@@ -398,34 +398,58 @@ function initReviewsSwiper() {
 
 // Fetch Google Sheet reviews, add to DOM, then init swiper
 (function() {
-    if (REVIEWS_SCRIPT_URL && REVIEWS_SCRIPT_URL !== 'YOUR_APPS_SCRIPT_URL') {
+    var retryCount = 0;
+    var maxRetries = 2;
+
+    function fetchReviews() {
+        if (!REVIEWS_SCRIPT_URL || REVIEWS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL') {
+            var loadingEl = document.getElementById('reviewsLoading');
+            if (loadingEl) loadingEl.remove();
+            initReviewsSwiper();
+            return;
+        }
+
         fetch(REVIEWS_SCRIPT_URL)
             .then(function(res) { return res.json(); })
             .then(function(reviews) {
-                // Remove loading indicator
-                var loadingEl = document.getElementById('reviewsLoading');
-                if (loadingEl) loadingEl.remove();
-
                 if (reviews && reviews.length) {
+                    var loadingEl = document.getElementById('reviewsLoading');
+                    if (loadingEl) loadingEl.remove();
+
                     var wrapper = document.querySelector('.reviews-swiper .swiper-wrapper');
                     if (wrapper) {
                         reviews.forEach(function(review) {
                             wrapper.appendChild(createReviewCard(review));
                         });
                     }
+                    initReviewsSwiper();
+                } else if (retryCount < maxRetries) {
+                    // Empty response — retry after 3 seconds
+                    retryCount++;
+                    setTimeout(fetchReviews, 1000);
+                } else {
+                    // Max retries reached — init swiper without reviews
+                    var loadingEl = document.getElementById('reviewsLoading');
+                    if (loadingEl) loadingEl.remove();
+                    initReviewsSwiper();
                 }
-                initReviewsSwiper();
             })
             .catch(function() {
-                // Remove loading indicator
-                var loadingEl = document.getElementById('reviewsLoading');
-                if (loadingEl) loadingEl.remove();
-
-                // Fetch failed — init swiper anyway
-                initReviewsSwiper();
+                if (retryCount < maxRetries) {
+                    // Fetch failed — retry after 1 second
+                    retryCount++;
+                    setTimeout(fetchReviews, 1000);
+                } else {
+                    // Max retries reached — init swiper without reviews
+                    var loadingEl = document.getElementById('reviewsLoading');
+                    if (loadingEl) loadingEl.remove();
+                    initReviewsSwiper();
+                }
             });
-    } else {
-        initReviewsSwiper();
+    }
+
+    fetchReviews();
+})();
     }
 })();
 
