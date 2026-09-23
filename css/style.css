@@ -1402,8 +1402,8 @@ img {
     right: 30px;
     width: 45px;
     height: 45px;
-    background: var(--gold);
-    color: var(--gray-900);
+    background: #6b7280;
+    color: #ffffff;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -1425,7 +1425,7 @@ img {
 
 .back-to-top:hover {
     transform: translateY(-3px);
-    background: var(--gold-dark);
+    background: #4b5563;
 }
 
 /* === ANIMATIONS (Fade in on scroll) === */
