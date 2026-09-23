@@ -158,7 +158,10 @@ const translations = {
         "review.form.photoHint": "Optional • JPG/PNG • Max 5MB",
         "review.form.submit": "Submit Review",
         "review.form.note": "Your review will be published on our website after verification. Thank you!",
-        "review.back": "← Back to Ganesh Holidays"
+        "review.back": "← Back to Ganesh Holidays",
+        "review.success.title": "Thank You!",
+        "review.success.message": "Your review has been submitted successfully. It will appear on our website after verification.",
+        "review.success.back": "Back to Home"
     },
 
     ta: {
@@ -315,7 +318,10 @@ const translations = {
         "review.form.photoHint": "விருப்பம் • JPG/PNG • அதிகபட்சம் 5MB",
         "review.form.submit": "மதிப்புரை சமர்ப்பிக்க",
         "review.form.note": "உங்கள் மதிப்புரை சரிபார்ப்புக்குப் பிறகு எங்கள் இணையதளத்தில் வெளியிடப்படும். நன்றி!",
-        "review.back": "← கணேஷ் ஹாலிடேஸ் திரும்ப"
+        "review.back": "← கணேஷ் ஹாலிடேஸ் திரும்ப",
+        "review.success.title": "நன்றி!",
+        "review.success.message": "உங்கள் மதிப்புரை வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது. சரிபார்ப்புக்குப் பிறகு எங்கள் இணையதளத்தில் தோன்றும்.",
+        "review.success.back": "முகப்புக்குத் திரும்ப"
     }
 };
 
