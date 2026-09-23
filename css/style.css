@@ -194,7 +194,8 @@ img {
 
 .lang-toggle {
     display: flex;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 2px solid #ffffff;
     border-radius: 20px;
     padding: 3px;
 }
@@ -208,7 +209,7 @@ img {
     cursor: pointer;
     transition: var(--transition);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
 }
 
 .lang-btn.active {
