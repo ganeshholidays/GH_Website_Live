@@ -417,6 +417,17 @@ img {
     font-size: 24px;
 }
 
+.hero.normal-mode .hero-content .btn-primary {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.hero.normal-mode .hero-content .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
 .hero-title {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
@@ -462,27 +473,31 @@ img {
 }
 
 .btn-primary {
-    background: var(--gold);
-    color: var(--gray-900);
-    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--blue-dark);
+    border: 2px solid rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .btn-primary:hover {
-    background: var(--gold-dark);
-    border-color: var(--gold-dark);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(15, 23, 42, 0.3);
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(246, 173, 85, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .btn-outline {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.15);
     color: var(--blue-dark);
-    border-color: var(--blue-dark);
+    border: 2px solid rgba(15, 23, 42, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .btn-outline:hover {
-    background: var(--blue-dark);
-    color: white;
+    background: rgba(255, 255, 255, 0.35);
+    border-color: rgba(15, 23, 42, 0.3);
     transform: translateY(-2px);
 }
 
