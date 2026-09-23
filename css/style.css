@@ -213,8 +213,10 @@ img {
 }
 
 .lang-btn.active {
-    background: var(--gold);
-    color: var(--gray-900);
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 18px;
 }
 
 .nav-hamburger {
