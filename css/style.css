@@ -195,9 +195,9 @@ img {
 .lang-toggle {
     display: flex;
     background: transparent;
-    border: 2px solid #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 3px;
+    padding: 0px;
 }
 
 .lang-btn {
