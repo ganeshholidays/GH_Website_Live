@@ -91,6 +91,15 @@ img {
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
 }
 
+/* Solid navbar when festival or video — mobile only */
+@media (max-width: 768px) {
+    body.hero-has-media .navbar {
+        background: rgba(15, 23, 42, 0.95) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+    }
+}
+
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
