@@ -1537,6 +1537,7 @@ img {
     .hero.video-mode {
         height: auto;
         max-height: none;
+        padding-top: 70px;
     }
 
     .hero.video-mode .hero-bg {
@@ -1559,6 +1560,7 @@ img {
     .hero.festival-mode {
         height: auto;
         max-height: none;
+        padding-top: 70px;
     }
 
     .hero.festival-mode .hero-bg {

@@ -194,9 +194,10 @@ img {
 
 .lang-toggle {
     display: flex;
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: 1px solid #ffffff;
     border-radius: 20px;
-    padding: 3px;
+    padding: 0px;
 }
 
 .lang-btn {
@@ -208,12 +209,14 @@ img {
     cursor: pointer;
     transition: var(--transition);
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.6);
+    color: #ffffff;
 }
 
 .lang-btn.active {
-    background: var(--gold);
-    color: var(--gray-900);
+    background: #ffffff;
+    color: #0f172a;
+    border: none;
+    border-radius: 18px;
 }
 
 .nav-hamburger {
@@ -425,12 +428,12 @@ img {
 .hero.normal-mode .hero-content .btn-primary {
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.4);
+    border: 2px solid #ffffff;
 }
 
 .hero.normal-mode .hero-content .btn-primary:hover {
     background: rgba(255, 255, 255, 0.35);
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: #ffffff;
 }
 
 .hero-title {
@@ -613,14 +616,43 @@ img {
 .service-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-    border-radius: 50%;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 18px;
-    color: white;
-    font-size: 22px;
+    font-size: 24px;
+}
+
+/* Individual service icon colors */
+.service-icon.icon-rental {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3B82F6;
+}
+
+.service-icon.icon-driver {
+    background: rgba(139, 92, 246, 0.1);
+    color: #8B5CF6;
+}
+
+.service-icon.icon-holiday {
+    background: rgba(245, 158, 11, 0.1);
+    color: #F59E0B;
+}
+
+.service-icon.icon-pilgrimage {
+    background: rgba(239, 68, 68, 0.1);
+    color: #EF4444;
+}
+
+.service-icon.icon-family {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10B981;
+}
+
+.service-icon.icon-corporate {
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366F1;
 }
 
 .service-card h3 {
@@ -762,8 +794,31 @@ img {
 
 .whyus-item i {
     font-size: 32px;
-    color: var(--gold);
     margin-bottom: 15px;
+}
+
+.whyus-item .fa-shield-alt {
+    color: #10B981;
+}
+
+.whyus-item .fa-hand-holding-usd {
+    color: #3B82F6;
+}
+
+.whyus-item .fa-headset {
+    color: #F59E0B;
+}
+
+.whyus-item .fa-map-marked-alt {
+    color: #EF4444;
+}
+
+.whyus-item .fa-cogs {
+    color: #8B5CF6;
+}
+
+.whyus-item .fa-heart {
+    color: #EC4899;
 }
 
 .whyus-item h4 {
@@ -991,18 +1046,23 @@ img {
 
 .reviews-prev,
 .reviews-next {
-    color: #ffffff !important;
-    background: var(--blue-dark) !important;
+    color: var(--blue-dark) !important;
+    background: #ffffff !important;
     width: 40px !important;
     height: 40px !important;
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.reviews-prev:hover,
+.reviews-next:hover {
+    background: #f0f0f0 !important;
 }
 
 .reviews-prev::after,
 .reviews-next::after {
     font-size: 16px !important;
-    font-weight: 800 !important;
+    font-weight: 700 !important;
 }
 
 .reviews-prev {
@@ -1399,8 +1459,8 @@ img {
     right: 30px;
     width: 45px;
     height: 45px;
-    background: var(--gold);
-    color: var(--gray-900);
+    background: #ffffff;
+    color: var(--blue-dark);
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -1422,7 +1482,7 @@ img {
 
 .back-to-top:hover {
     transform: translateY(-3px);
-    background: var(--gold-dark);
+    background: #f0f0f0;
 }
 
 /* === ANIMATIONS (Fade in on scroll) === */
@@ -1477,6 +1537,7 @@ img {
     .hero.video-mode {
         height: auto;
         max-height: none;
+        padding-top: 70px;
     }
 
     .hero.video-mode .hero-bg {
@@ -1499,6 +1560,7 @@ img {
     .hero.festival-mode {
         height: auto;
         max-height: none;
+        padding-top: 70px;
     }
 
     .hero.festival-mode .hero-bg {
@@ -1701,7 +1763,7 @@ img {
     }
 
     .lang-toggle {
-        padding: 2px;
+        padding: 0px;
     }
 
     .lang-btn {
