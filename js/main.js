@@ -81,6 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
     const backToTop = document.getElementById('backToTop');
 
+    // On mobile, force solid navbar for festival and video modes
+    if (window.innerWidth <= 768) {
+        var heroEl = document.querySelector('.hero');
+        if (heroEl) {
+            var checkHeroMode = setInterval(function() {
+                if (heroEl.classList.contains('festival-mode') || heroEl.classList.contains('video-mode')) {
+                    navbar.classList.add('scrolled');
+                    clearInterval(checkHeroMode);
+                } else if (heroEl.classList.contains('normal-mode')) {
+                    clearInterval(checkHeroMode);
+                }
+            }, 200);
+            // Stop checking after 5 seconds
+            setTimeout(function() { clearInterval(checkHeroMode); }, 5000);
+        }
+    }
+
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
