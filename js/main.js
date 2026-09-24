@@ -22,6 +22,7 @@
         hero.classList.remove('normal-mode');
         heroImg.src = festivalFile;
         hero.classList.add('festival-mode');
+        document.body.classList.add('hero-has-media');
     };
     testFestival.onerror = function() {
         // Step 2: Check if video file exists
@@ -47,9 +48,11 @@
             videoLoaded = true;
             hero.classList.remove('normal-mode');
             hero.classList.add('video-mode');
+            document.body.classList.add('hero-has-media');
             heroVideo.play().catch(function() {
                 // Autoplay blocked — revert to hero-default
                 hero.classList.remove('video-mode');
+                document.body.classList.remove('hero-has-media');
                 hero.classList.add('normal-mode');
             });
         }, { once: true });
@@ -82,28 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const backToTop = document.getElementById('backToTop');
 
     // On mobile, force solid navbar for festival and video modes
-    var forceSolidNavbar = false;
-    if (window.innerWidth <= 768) {
-        var heroEl = document.querySelector('.hero');
-        if (heroEl) {
-            var checkHeroMode = setInterval(function() {
-                if (heroEl.classList.contains('festival-mode') || heroEl.classList.contains('video-mode')) {
-                    forceSolidNavbar = true;
-                    navbar.classList.add('scrolled');
-                    clearInterval(checkHeroMode);
-                } else if (heroEl.classList.contains('normal-mode')) {
-                    clearInterval(checkHeroMode);
-                }
-            }, 200);
-            setTimeout(function() { clearInterval(checkHeroMode); }, 5000);
-        }
-    }
+    // (handled via CSS below — no JS needed)
 
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
 
         // Navbar shadow on scroll
-        if (scrollY > 50 || forceSolidNavbar) {
+        if (scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
