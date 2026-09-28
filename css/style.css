@@ -239,7 +239,8 @@ img {
 }
 
 .lang-btn {
-    border: 1px solid #1a365d; /* Outline in dark blue   border: none;*/
+    /*border: 1px solid #1a365d; /* Outline in dark blue   */
+    border: none;
     background: transparent;
     padding: 5px 12px;
     border-radius: 18px;
