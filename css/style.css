@@ -232,30 +232,28 @@ img {
 
 .lang-toggle {
     display: flex;
-    background: transparent;
-    border: 1px solid #ffffff;
-    border-radius: 20px;
-    padding: 0px;
+    border: 1px solid #1a365d;   /* dark blue outline */
+    border-radius: 20px;         /* single oval shape */
+    overflow: hidden;            /* keeps children inside the oval */
+    background: transparent;     /* matches header background */
 }
 
 .lang-btn {
-    /*border: 1px solid #1a365d; /* Outline in dark blue   */
-    border: none;
+    flex: 1;                     /* equal width for both buttons */
+    border: none;                /* remove individual borders */
+    border-radius: 0;            /* no rounded corners on each button */
     background: transparent;
     padding: 5px 12px;
-    border-radius: 18px;
     font-size: 12px;
+    font-weight: 600;
+    color: #1a365d;              /* dark blue text */
     cursor: pointer;
     transition: var(--transition);
-    font-weight: 600;
-    color: #1a365d;          /* Dark blue text  color: #ffffff; */
 }
 
 .lang-btn.active {
-    background: #1a365d;     /* Dark blue background when active background: #ffffff;*/
-    color: #ffffff;          /* White text when active  color: #0f172a;*/
-    border: none;
-    border-radius: 18px;
+    background: #1a365d;         /* active button filled */
+    color: #ffffff;              /* white text when active */
 }
 
 .nav-hamburger {
