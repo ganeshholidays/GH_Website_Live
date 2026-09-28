@@ -1445,8 +1445,8 @@ img {
 
 /* === FOOTER === */
 .footer {
-    background: var(--blue-dark);
-    color: rgba(255,255,255,0.7);
+    background: #fef9e7;   /* sandal shade background: var(--blue-dark); */
+    color: var(--blue-dark); /* dark text for contrast color: rgba(255,255,255,0.7); */
     padding: 60px 0 20px;
 }
 
@@ -1464,7 +1464,7 @@ img {
 }
 
 .footer-links h4 {
-    color: white;
+    color: var(--blue-dark); /*color: white;*/
     font-size: 15px;
     margin-bottom: 15px;
     font-weight: 600;
