@@ -1445,7 +1445,7 @@ img {
 
 /* === FOOTER === */
 .footer {
-    background: #fef9e7;   /* sandal shade background: var(--blue-dark); */
+    background: rgba(255,255,255,0.8); /* half-white */  /* var(--blue-dark); */
     color: var(--blue-dark); /* dark text for contrast color: rgba(255,255,255,0.7); */
     padding: 60px 0 20px;
 }
