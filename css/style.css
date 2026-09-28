@@ -85,7 +85,8 @@ img {
 }
 
 .navbar.scrolled {
-    background: rgba(15, 23, 42, 0.95);
+    /*background: rgba(15, 23, 42, 0.95);      -- commented this dark navy blue*/ 
+    background: rgba(255,255,255,0.8); /* half-white */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 2px 20px rgba(0,0,0,0.3);
@@ -198,7 +199,7 @@ img {
 .nav-link {
     font-size: 14px;
     font-weight: 600;
-    color: #ffffff;
+    color: #1a365d;          /* Dark blue for contrast  color: #ffffff; */
     transition: var(--transition);
     position: relative;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
@@ -238,7 +239,7 @@ img {
 }
 
 .lang-btn {
-    border: none;
+    border: 1px solid #1a365d; /* Outline in dark blue   border: none;*/
     background: transparent;
     padding: 5px 12px;
     border-radius: 18px;
@@ -246,12 +247,12 @@ img {
     cursor: pointer;
     transition: var(--transition);
     font-weight: 600;
-    color: #ffffff;
+    color: #1a365d;          /* Dark blue text  color: #ffffff; */
 }
 
 .lang-btn.active {
-    background: #ffffff;
-    color: #0f172a;
+    background: #1a365d;     /* Dark blue background when active background: #ffffff;*/
+    color: #ffffff;          /* White text when active  color: #0f172a;*/
     border: none;
     border-radius: 18px;
 }
