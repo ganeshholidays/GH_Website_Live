@@ -157,7 +157,7 @@ img {
     }
 
     .logo-img {
-        max-height: 55px;      /* Smaller logo for mobile */
+        max-height: 65px;      /* Smaller logo for mobile */
         width: auto;
         object-fit: contain;
     }
