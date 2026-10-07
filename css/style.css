@@ -1889,6 +1889,19 @@ img {
     }
 }
 
+@media (max-width: 480px) {
+    .footer-road-centerline {
+        stroke-dasharray: 28 34;
+        animation: footer-road-flow-mobile 1.6s linear infinite;
+    }
+}
+
+@keyframes footer-road-flow-mobile {
+    to {
+        stroke-dashoffset: -62px;
+    }
+}
+
 @keyframes footer-wheel-roll {
     to {
         transform: rotate(360deg);
