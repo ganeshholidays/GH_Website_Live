@@ -1810,3 +1810,110 @@ img {
         font-size: 11px;
     }
 }
+
+/* Footer road-trip animation */
+.footer {
+    position: relative;
+    padding-top: 136px;
+    overflow: hidden;
+}
+
+.footer-road-scene {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 122px;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-road-scene svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.footer-road-edge,
+.footer-road-surface,
+.footer-road-centerline {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.footer-road-edge {
+    stroke: #f4f2e9;
+    stroke-width: 34;
+    filter: drop-shadow(0 4px 4px rgba(51, 39, 30, .2));
+}
+
+.footer-road-surface {
+    stroke: #272b2f;
+    stroke-width: 29;
+}
+
+.footer-road-centerline {
+    stroke: #f3c448;
+    stroke-width: 2.2;
+    stroke-dasharray: 9 8;
+    animation: footer-road-flow 1.6s linear infinite;
+}
+
+.footer-road-car,
+.footer-road-suitcase {
+    filter: drop-shadow(0 2px 2px rgba(20, 25, 28, .35));
+}
+
+.footer-road-car,
+.footer-road-suitcase {
+    opacity: 0;
+}
+
+.footer-car-spokes,
+.footer-case-spokes {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.footer-car-spokes {
+    animation: footer-wheel-roll 1.1s linear infinite;
+}
+
+.footer-case-spokes {
+    animation: footer-wheel-roll .85s linear infinite;
+}
+
+@keyframes footer-road-flow {
+    to {
+        stroke-dashoffset: -17px;
+    }
+}
+
+@keyframes footer-wheel-roll {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding-top: 124px;
+    }
+
+    .footer-road-scene {
+        height: 112px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-road-centerline,
+    .footer-car-spokes,
+    .footer-case-spokes {
+        animation: none;
+    }
+
+    .footer-road-car,
+    .footer-road-suitcase {
+        display: none;
+    }
+}
