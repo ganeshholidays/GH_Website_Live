@@ -382,7 +382,99 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
+        <div class="footer-road-scene" aria-hidden="true">
+    <svg viewBox="0 0 1200 140" preserveAspectRatio="none" role="presentation">
+        <path id="footerTravelPath"
+              d="M-70 91 C110 100 225 100 350 91 S585 82 710 91 S990 101 1270 87"
+              fill="none" />
+
+        <path class="footer-road-edge"
+              d="M-70 91 C110 100 225 100 350 91 S585 82 710 91 S990 101 1270 87" />
+        <path class="footer-road-surface"
+              d="M-70 91 C110 100 225 100 350 91 S585 82 710 91 S990 101 1270 87" />
+        <path class="footer-road-centerline"
+              d="M-70 91 C110 100 225 100 350 91 S585 82 710 91 S990 101 1270 87" />
+
+        <g class="footer-road-car">
+            <animateMotion dur="24s" repeatCount="indefinite" rotate="0"
+                           keyTimes="0;.40;.42;1"
+                           keyPoints="0;1;1;1"
+                           calcMode="linear">
+                <mpath href="#footerTravelPath" />
+            </animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite"
+                     values="1;1;0;0" keyTimes="0;.39;.42;1" />
+
+            <image href="assets/footer-car-real.png"
+                   x="-74" y="-49" width="148" height="49"
+                   preserveAspectRatio="xMidYMax meet" />
+
+            <g class="footer-car-wheel-overlay" transform="translate(-41 -11)">
+                <circle r="5.5" fill="#242c32" stroke="#11191e" stroke-width=".5" />
+                <circle r="4.65" fill="#4d5c64" stroke="#c5d0ce" stroke-width=".45" />
+                <g class="footer-car-spokes" fill="#d9dfdb" stroke="#87969a" stroke-width=".25">
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(60)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(120)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(180)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(240)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(300)" />
+                </g>
+                <circle r="1.05" fill="#d4ba87" stroke="#f1e5cc" stroke-width=".35" />
+            </g>
+
+            <g class="footer-car-wheel-overlay" transform="translate(34 -11)">
+                <circle r="5.5" fill="#242c32" stroke="#11191e" stroke-width=".5" />
+                <circle r="4.65" fill="#4d5c64" stroke="#c5d0ce" stroke-width=".45" />
+                <g class="footer-car-spokes" fill="#d9dfdb" stroke="#87969a" stroke-width=".25">
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(60)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(120)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(180)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(240)" />
+                    <path d="M-.55-4 .55-4 .8-1 .3 0-.3 0-.8-1Z" transform="rotate(300)" />
+                </g>
+                <circle r="1.05" fill="#d4ba87" stroke="#f1e5cc" stroke-width=".35" />
+            </g>
+        </g>
+
+        <g class="footer-road-suitcase">
+            <animateMotion dur="24s" repeatCount="indefinite" rotate="0"
+                           keyTimes="0;.40;.97;1"
+                           keyPoints="0;0;1;1"
+                           calcMode="linear">
+                <mpath href="#footerTravelPath" />
+            </animateMotion>
+            <animate attributeName="opacity" dur="24s" repeatCount="indefinite"
+                     values="0;0;1;1;0" keyTimes="0;.39;.40;.97;1" />
+
+            <image href="assets/footer-suitcase-real.png"
+                   x="-23" y="-69" width="46" height="69"
+                   preserveAspectRatio="xMidYMax meet" />
+
+            <g class="footer-case-wheel-overlay" transform="translate(-14 -5)">
+                <circle r="2.65" fill="#22292d" stroke="#11171a" stroke-width=".3" />
+                <circle r="2.05" fill="#59636a" stroke="#d9d4c9" stroke-width=".3" />
+                <g class="footer-case-spokes" stroke="#e3e1d9" stroke-width=".35" stroke-linecap="round">
+                    <path d="M0-.35V-1.75M0 .35V1.75M-.35 0H-1.75M.35 0H1.75" />
+                    <path d="m-.25-.25-1-1m1.5 1.5 1 1m0-1.5-1 1m-1.5.5 1-1" />
+                </g>
+                <circle r=".55" fill="#d3b77d" />
+            </g>
+
+            <g class="footer-case-wheel-overlay" transform="translate(10 -5)">
+                <circle r="2.65" fill="#22292d" stroke="#11171a" stroke-width=".3" />
+                <circle r="2.05" fill="#59636a" stroke="#d9d4c9" stroke-width=".3" />
+                <g class="footer-case-spokes" stroke="#e3e1d9" stroke-width=".35" stroke-linecap="round">
+                    <path d="M0-.35V-1.75M0 .35V1.75M-.35 0H-1.75M.35 0H1.75" />
+                    <path d="m-.25-.25-1-1m1.5 1.5 1 1m0-1.5-1 1m-1.5.5 1-1" />
+                </g>
+                <circle r=".55" fill="#d3b77d" />
+            </g>
+        </g>
+    </svg>
+</div>
+		<div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="nav-logo">
