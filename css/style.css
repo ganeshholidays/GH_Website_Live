@@ -1903,8 +1903,35 @@ img {
     .footer-road-scene {
         height: 112px;
     }
+
+    .footer-road-car-art,
+    .footer-road-suitcase-art {
+        transform-box: fill-box;
+        transform-origin: center;
+        transform: scaleX(2.4);
+    }
 }
 
+@media (max-width: 359px) {
+    .footer-road-car-art,
+    .footer-road-suitcase-art {
+        transform: scaleX(2.9);
+    }
+}
+
+@media (min-width: 431px) and (max-width: 520px) {
+    .footer-road-car-art,
+    .footer-road-suitcase-art {
+        transform: scaleX(2.05);
+    }
+}
+
+@media (min-width: 521px) and (max-width: 768px) {
+    .footer-road-car-art,
+    .footer-road-suitcase-art {
+        transform: scaleX(1.55);
+    }
+}
 @media (prefers-reduced-motion: reduce) {
     .footer-road-centerline,
     .footer-car-spokes,
